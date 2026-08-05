@@ -168,3 +168,29 @@ Projet mené en autonomie complète, du premier échange client à la mise en pr
 - **Conception technique & architecture** — Architecture frontend/backend (React, API REST Symfony), choix de sécurité (JWT en cookie HttpOnly, protection CSRF, prévention IDOR, pattern DTO/Mapper), migration vers PostgreSQL/PostGIS pour les calculs géospatiaux
 - **Data engineering & algorithme métier** — Sélection, nettoyage et croisement des sources Open Data (DVF, IRIS INSEE) via script Python, conception du moteur de calcul statistique et géospatial, mise en place de tables analytiques pré-calculées
 - **Qualité & mise en production** — Suite de tests unitaires (PHPUnit) sur le moteur de calcul, gestion versionnée des évolutions de base de données (Doctrine Migrations), déploiement conteneurisé (Docker) sur infrastructure OVH Cloud
+
+
+## 🗺️ Limites connues & perspectives
+
+Un projet livré n'est jamais un projet "fini" — voici un état honnête des arbitrages pris et des évolutions déjà identifiées.
+
+### Dette technique assumée
+
+- Les coefficients et seuils du moteur de pondération (`MethodACalculator`) sont actuellement codés en dur dans le service, plutôt que configurables. C'est un choix délibéré pour respecter le périmètre du MVP, mais c'est une dette technique clairement identifiée à traiter avant toute nouvelle fonctionnalité.
+- Certaines améliorations d'accessibilité et d'ergonomie (identifiées lors des tests de navigation clavier en phase de recette) ont été proposées au client mais non retenues dans le périmètre fonctionnel de la V1, pour des raisons de priorisation métier.
+
+### Roadmap V2
+
+- Refactoring de l'architecture et du socle applicatif, en amont de toute nouvelle fonctionnalité
+- Extension de l'algorithme au marché de la Haute-Savoie (74)
+- Ajout d'un type de bien "haut de gamme / prestige"
+- Refonte UX/UI de l'interface
+
+---
+
+## 📬 Contact
+
+Ce repository est une vitrine technique. Pour toute question sur le projet ou mon parcours :
+
+- 💼 [LinkedIn](#)
+- 📧 [Email](#)
