@@ -53,3 +53,16 @@ Le projet devait intégrer dès la conception :
 </p>
 
 🔗 [Voir la démo en ligne](https://estimmo-savoies.fr/)
+
+
+## 🛠️ Stack technique
+
+| Couche | Technologies |
+|---|---|
+| **Frontend** | React (Vite) · React Hook Form + Yup · Axios · Bootstrap / Sass · Mobile-first |
+| **Backend** | Symfony (API REST) · Doctrine ORM / DBAL · PHPUnit |
+| **Base de données** | PostgreSQL · PostGIS (ingénierie géospatiale) |
+| **Sécurité** | JWT (cookie HttpOnly, SameSite: Lax) · Pattern DTO/Mapper · Prévention IDOR |
+| **Data engineering** | Croisement DVF (transactions) / BAN (adresses) / IRIS INSEE via requêtes géospatiales |
+| **Déploiement** | Docker (3 conteneurs isolés) · VPS OVH Cloud (Debian) · Nginx · SSL/TLS |
+| **Gestion de projet** | Méthodologie Agile (sprints 2 semaines) · Trello · Figma (maquettage mobile-first) |
