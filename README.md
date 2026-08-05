@@ -141,3 +141,18 @@ Cette approche garantit qu'une estimation est **toujours produite**, tout en ref
 Trois extraits représentatifs du projet, choisis pour illustrer la rigueur de sécurité côté API, la logique métier de fiabilité statistique, et l'intégration géospatiale PostGIS.
 
 📂 [**Voir les extraits commentés →**](extraits-code/)
+
+
+## 📊 Résultats
+
+Données d'utilisation réelles depuis la mise en production :
+
+| Métrique | Valeur |
+|---|---|
+| Estimations réalisées | **240** |
+| Prospects externes uniques | **96** particuliers ayant généré un lead qualifié |
+| Professionnels utilisateurs réguliers | **105** adoptant l'outil au quotidien |
+
+- ✅ Déployé en production sur nom de domaine dédié : [estimmo-savoies.fr](https://estimmo-savoies.fr/)
+- ✅ Validé par une phase de tests utilisateurs (UAT) avec agents immobiliers et particuliers
+- ✅ Sécurité maintenue via audits de dépendances réguliers (`composer audit`, `npm audit`)
