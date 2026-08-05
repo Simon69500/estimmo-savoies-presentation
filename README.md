@@ -192,5 +192,6 @@ Un projet livré n'est jamais un projet "fini" — voici un état honnête des a
 
 Ce repository est une vitrine technique. Pour toute question sur le projet ou mon parcours :
 
-- 💼 [LinkedIn](#)
-- 📧 [Email](#)
+- 🌐 [Mon portfolio](https://simon69500.github.io/Portfolio-Simon/index.html)
+- 💼 [LinkedIn](https://www.linkedin.com/in/simon-badin-939594279/)
+- 📧 [Email](simonsola67@gmail.com)
