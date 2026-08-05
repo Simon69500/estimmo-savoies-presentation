@@ -96,3 +96,35 @@ flowchart TD
 - **Séparation stricte des responsabilités** : le `Controller` orchestre, ne calcule jamais rien lui-même — chaque service a un rôle unique (principe SRP)
 - **Aucune confiance envers le client** : chaque requête entrante passe par un DTO validé (`EstimationRequestDto`) avant d'atteindre la moindre entité métier
 - **Deux stratégies de repli combinées** : fiabilité statistique temporelle (`BasePriceCalculator`) et fiabilité spatiale (`RefIrisGeoRepository`), toutes deux conçues pour garantir qu'un résultat soit toujours produit malgré des données parfois incomplètes
+
+
+## 🧩 Défis techniques & solutions
+
+### 1. Fiabilité statistique sur un marché à faible volume
+
+**Défi** — Sur certains secteurs ruraux, le nombre de transactions immobilières récentes est trop faible pour produire une moyenne de prix fiable. Une estimation basée sur 2 ou 3 ventes n'a aucune valeur statistique.
+
+**Solution** — Une logique de repli hiérarchique en 3 niveaux (`BasePriceCalculator`) :
+1. Si l'échantillon des 24 derniers mois atteint un seuil minimum de ventes → il est utilisé directement (donnée la plus actuelle)
+2. Sinon, on croise avec l'échantillon à 5 ans pour calculer un **coefficient de revalorisation local**, appliqué au prix stable à 5 ans
+3. En dernier recours, seul le prix à 5 ans est retourné (dernier filet de sécurité)
+
+Cette approche garantit qu'une estimation est **toujours produite**, tout en reflétant la fiabilité réelle des données disponibles pour chaque secteur.
+
+### 2. Rattacher une adresse à son secteur géographique
+
+**Défi** — Une adresse saisie en texte libre (via l'API BAN) doit être rattachée à son quartier IRIS (découpage statistique INSEE) pour appliquer les bonnes données de marché local — un calcul de type "point dans un polygone" que le DQL de Doctrine ne sait pas exprimer nativement.
+
+**Solution** — Requête SQL native utilisant la fonction spatiale PostGIS `ST_Intersects`, exécutée via la couche DBAL de Doctrine (`RefIrisGeoRepository`). Un index spatial GIST sur la colonne géométrique garantit un temps de réponse instantané malgré la complexité du calcul géographique.
+
+### 3. Sécurisation de l'API contre la manipulation de données
+
+**Défi** — Un formulaire multi-étapes avec des champs conditionnels (type de bien, caractéristiques variables) expose une large surface d'attaque si le backend fait confiance aux données envoyées par le client.
+
+**Solution** — Aucune requête n'atteint directement l'entité `Estimation`. Chaque payload entrant est intercepté et validé par un DTO dédié (`EstimationRequestDto`, via l'attribut PHP 8 `#[MapRequestPayload]`), avec des contraintes de validation par champ (type, plage, regex — ex: code postal restreint au département 73). En complément, chaque accès à une ressource utilisateur passe par une vérification systématique de propriété, pour prévenir les failles IDOR (accès à une estimation appartenant à un autre utilisateur via manipulation d'ID).
+
+### 4. Accessibilité d'un tunnel de conversion complexe
+
+**Défi** — Un parcours en plusieurs étapes avec autocomplétion d'adresse, champs conditionnels et consentement RGPD est particulièrement exposé aux problèmes d'accessibilité (navigation clavier, lecteurs d'écran).
+
+**Solution** — Développement guidé par les recommandations RGAA et WCAG 2.1 niveau AA, validation régulière via les outils du W3C, et tests de navigation clavier en phase de recette pour identifier les blocages de parcours.
