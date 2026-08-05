@@ -147,11 +147,12 @@ Trois extraits représentatifs du projet, choisis pour illustrer la rigueur de s
 
 Données d'utilisation réelles depuis la mise en production :
 
-| Métrique | Valeur |
-|---|---|
-| Estimations réalisées | **240** |
-| Prospects externes uniques | **96** particuliers ayant généré un lead qualifié |
-| Professionnels utilisateurs réguliers | **105** adoptant l'outil au quotidien |
+**240 estimations réalisées**, réparties par origine :
+
+| Origine | Volume | Détail |
+|---|---|---|
+| 👤 Professionnels | **105** | Usage récurrent par mon client et son réseau professionnel |
+| 🏠 Particuliers | **135** | Dont **96 prospects uniques** ayant généré un lead qualifié pour mon client |
 
 - ✅ Déployé en production sur nom de domaine dédié : [estimmo-savoies.fr](https://estimmo-savoies.fr/)
 - ✅ Validé par une phase de tests utilisateurs (UAT) avec agents immobiliers et particuliers
