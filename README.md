@@ -66,3 +66,33 @@ Le projet devait intégrer dès la conception :
 | **Data engineering** | Croisement DVF (transactions) / BAN (adresses) / IRIS INSEE via requêtes géospatiales |
 | **Déploiement** | Docker (3 conteneurs isolés) · VPS OVH Cloud (Debian) · Nginx · SSL/TLS |
 | **Gestion de projet** | Méthodologie Agile (sprints 2 semaines) · Trello · Figma (maquettage mobile-first) |
+
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart TD
+    A[Utilisateur - Navigateur] -->|Saisie formulaire| B[React / Vite<br/>React Hook Form + Yup]
+    B -->|Requête HTTP<br/>Axios + cookie JWT HttpOnly| C[API REST Symfony]
+    C -->|Validation entrante| D[EstimationRequestDto<br/>#MapRequestPayload]
+    D --> E[EstimationController]
+    E -->|Orchestration| F[EstimationService]
+    F --> G[BasePriceCalculator<br/>logique de repli 24m / 5ans]
+    F --> H[RefIrisGeoRepository<br/>ST_Intersects]
+    G --> I[(PostgreSQL)]
+    H --> I
+    I -.->|Extension| J[(PostGIS)]
+    F -->|Résultat| E
+    E -->|Réponse JSON| B
+    B -->|Affichage| A
+
+    style D fill:#ffe6cc,stroke:#d79b00
+    style G fill:#cce5ff,stroke:#004085
+    style H fill:#cce5ff,stroke:#004085
+    style J fill:#d4edda,stroke:#155724
+```
+
+**Points clés de cette architecture :**
+- **Séparation stricte des responsabilités** : le `Controller` orchestre, ne calcule jamais rien lui-même — chaque service a un rôle unique (principe SRP)
+- **Aucune confiance envers le client** : chaque requête entrante passe par un DTO validé (`EstimationRequestDto`) avant d'atteindre la moindre entité métier
+- **Deux stratégies de repli combinées** : fiabilité statistique temporelle (`BasePriceCalculator`) et fiabilité spatiale (`RefIrisGeoRepository`), toutes deux conçues pour garantir qu'un résultat soit toujours produit malgré des données parfois incomplètes
