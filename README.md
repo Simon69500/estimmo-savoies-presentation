@@ -16,6 +16,8 @@ Les outils d'estimation nationaux lissent les prix immobiliers à l'échelle du 
 
 **Estimmo-Savoies** a été conçu pour un agent immobilier indépendant qui avait besoin d'un outil taillé pour son marché local — précis, rapide, et générateur de leads qualifiés.
 
+
+
 ## 🎯 Contexte & objectif métier
 
 ### Le client
@@ -55,6 +57,7 @@ Le projet devait intégrer dès la conception :
 🔗 [Voir la démo en ligne](https://estimmo-savoies.fr/)
 
 
+
 ## 🛠️ Stack technique
 
 | Couche | Technologies |
@@ -66,6 +69,7 @@ Le projet devait intégrer dès la conception :
 | **Data engineering** | Croisement DVF (transactions) / BAN (adresses) / IRIS INSEE via requêtes géospatiales |
 | **Déploiement** | Docker (3 conteneurs isolés) · VPS OVH Cloud (Debian) · Nginx · SSL/TLS |
 | **Gestion de projet** | Méthodologie Agile (sprints 2 semaines) · Trello · Figma (maquettage mobile-first) |
+
 
 
 ## 🏗️ Architecture
@@ -98,6 +102,7 @@ flowchart TD
 - **Deux stratégies de repli combinées** : fiabilité statistique temporelle (`BasePriceCalculator`) et fiabilité spatiale (`RefIrisGeoRepository`), toutes deux conçues pour garantir qu'un résultat soit toujours produit malgré des données parfois incomplètes
 
 
+
 ## 🧩 Défis techniques & solutions
 
 ### 1. Fiabilité statistique sur un marché à faible volume
@@ -128,3 +133,11 @@ Cette approche garantit qu'une estimation est **toujours produite**, tout en ref
 **Défi** — Un parcours en plusieurs étapes avec autocomplétion d'adresse, champs conditionnels et consentement RGPD est particulièrement exposé aux problèmes d'accessibilité (navigation clavier, lecteurs d'écran).
 
 **Solution** — Développement guidé par les recommandations RGAA et WCAG 2.1 niveau AA, validation régulière via les outils du W3C, et tests de navigation clavier en phase de recette pour identifier les blocages de parcours.
+
+
+
+## 💻 Extraits de code
+
+Trois extraits représentatifs du projet, choisis pour illustrer la rigueur de sécurité côté API, la logique métier de fiabilité statistique, et l'intégration géospatiale PostGIS.
+
+📂 [**Voir les extraits commentés →**](extraits-code/)
