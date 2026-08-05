@@ -157,3 +157,14 @@ Données d'utilisation réelles depuis la mise en production :
 - ✅ Déployé en production sur nom de domaine dédié : [estimmo-savoies.fr](https://estimmo-savoies.fr/)
 - ✅ Validé par une phase de tests utilisateurs (UAT) avec agents immobiliers et particuliers
 - ✅ Sécurité maintenue via audits de dépendances réguliers (`composer audit`, `npm audit`)
+
+
+
+## 👤 Mon rôle
+
+Projet mené en autonomie complète, du premier échange client à la mise en production.
+
+- **Pilotage & relation client** — Cadrage du besoin, rédaction du cahier des charges, pilotage Agile (sprints de 2 semaines, démonstrations régulières), arbitrage du backlog entre valeur métier et faisabilité technique
+- **Conception technique & architecture** — Architecture frontend/backend (React, API REST Symfony), choix de sécurité (JWT en cookie HttpOnly, protection CSRF, prévention IDOR, pattern DTO/Mapper), migration vers PostgreSQL/PostGIS pour les calculs géospatiaux
+- **Data engineering & algorithme métier** — Sélection, nettoyage et croisement des sources Open Data (DVF, IRIS INSEE) via script Python, conception du moteur de calcul statistique et géospatial, mise en place de tables analytiques pré-calculées
+- **Qualité & mise en production** — Suite de tests unitaires (PHPUnit) sur le moteur de calcul, gestion versionnée des évolutions de base de données (Doctrine Migrations), déploiement conteneurisé (Docker) sur infrastructure OVH Cloud
