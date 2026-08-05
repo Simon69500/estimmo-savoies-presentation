@@ -39,3 +39,17 @@ Le projet devait intégrer dès la conception :
 - **RGPD / CNIL / Bloctel** — consentement explicite, gestion des données de contact
 - **Accessibilité RGAA / WCAG 2.1 niveau AA** — formulaire multi-étapes, navigation clavier
 - **SEO** — optimisation ciblée de la page d'accueil (le reste de l'app étant un tunnel de conversion SPA non indexable)
+
+  ## 📸 Aperçu
+
+<p align="center">
+  <img src="images/cover.webp" alt="Estimmo-Savoies - logo et identité visuelle" width="500">
+</p>
+
+<p align="center">
+  <img src="images/screen-formulaire.webp" alt="Tunnel de saisie - étape localisation" width="280">
+  <img src="images/screen-caracteristiques.webp" alt="Tunnel de saisie - caractéristiques du bien" width="280">
+  <img src="images/screen-resultat.webp" alt="Rapport d'estimation et mise en relation avec le conseiller" width="280">
+</p>
+
+🔗 [Voir la démo en ligne](https://estimmo-savoies.fr/)
